@@ -1,0 +1,38 @@
+project:
+  type: default
+  output-dir: output
+
+link-external-newwindow: true    
+
+# format:
+#   html:
+#     link-external-newwindow: true  
+
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "_extensions/HHSK-wkl/brand_hhsk/brand/favicon.svg" />
+      
+execute:
+  echo: false
+  warning: false
+  message: false
+  
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+# knitr:
+#   opts_chunk:
+#     dev: "svglite"
+#     dev.args:
+#       web_fonts: Ruda
+  
+lang: nl
+language: 
+  nl:
+    section-title-abstract: ""
+    title-block-published: "Opgesteld op:"
+    toc-title-document: "In dit hoofdstuk"
+    crossref-fig-title: "Figuur"
+    crossref-tbl-title: "Tabel"
+    crossref-ch-prefix: "hoofdstuk"
+    
