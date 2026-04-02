@@ -1,0 +1,97 @@
+---
+title: "Uitvoeringsprotocollen Gedragscode HHSK"
+format: 
+  dashboard:
+    orientation: rows
+server: shiny
+logo: "www/logo_wit.png"
+execute:
+  echo: false
+  warning: false
+include-in-header:
+  - text: |
+      <link rel = "shortcut icon" href = "www/favicon.svg" />
+---
+
+<!--#  Execution - zie: https://quarto.org/docs/interactive/shiny/execution.html-->
+```{r}
+# Contexts voor shiny - zie ook Quarto interactive execution
+# geen context  - render time
+# server        - server time
+# setup         - render time + server time
+# data          - render time + load objects
+# server-start  - first time server only
+
+```
+
+
+
+```{r render-time}
+# Niet beschikbaar voor de server!
+# Leeg laten - gebruik setup of deze i.c.m. server-start
+```
+
+```{r server-start}
+#| context: server-start
+#| include: false
+# Alleen de eerste keer at server-time
+
+```
+
+```{r setup}
+#| context: setup
+#| output: false
+# Beide at render-time and at server-time
+library(tidyverse)
+library(shiny)
+
+```
+
+# Uitvoeringsprotocol
+
+##  {.sidebar width="30%"}
+
+```{r}
+textInput(inputId = "project_naam", label = "Projectnaam")
+
+downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringsprotocol")
+```
+
+
+## Main panel
+
+
+
+# Toelichting
+
+## 
+
+###
+
+::: {.card title="Uitleg"}
+
+:::
+
+::: {.card title="Meer uitleg"}
+
+:::
+
+
+
+```{r}
+#| context: server
+
+output$uitvoeringsprotocol <- downloadHandler(
+    filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
+    content = function(file) {
+      
+      quarto::quarto_render("ecologische_werkprotocollen.qmd", 
+                            execute_params = list(project_naam = input$project_naam))
+      
+      file.copy("ecologische_werkprotocollen.docx", file)
+      
+    }
+  )
+
+
+```

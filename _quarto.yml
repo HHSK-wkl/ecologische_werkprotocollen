@@ -1,6 +1,6 @@
 project:
   type: default
-  output-dir: output
+  # output-dir: output
 
 link-external-newwindow: true    
 
