@@ -60,17 +60,12 @@ textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer")
 
 selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"))
 
-selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", , choices = c("Keuze 1", "Keuze 2", "Anders"))
+selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", , choices = c("Keuze 1", "Keuze 2", "Anders")) # multiple is mogelijk
 
 dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met")
 
 
-  # project_opdrachtnemer: "Aannemer ABC"
-  # project_wettelijk_belang: "Festival!"
-  # project_gebied: "Het gebied dat ik gekozen heb"
-  # project_activiteiten: ["Activiteit 1", "Activiteit 2"]
-  # uitvoering_start: "1999-01-01"
-  # uitvoering_eind: "1999-12-31"
+ 
 
 downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringsprotocol")
 ```
@@ -100,16 +95,24 @@ downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringspr
 #| context: server
 
 output$uitvoeringsprotocol <- downloadHandler(
-    filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
-    content = function(file) {
-      
-      quarto::quarto_render("ecologische_werkprotocollen.qmd", 
-                            execute_params = list(project_naam = input$project_naam))
-      
-      file.copy("ecologische_werkprotocollen.docx", file)
-      
-    }
-  )
+  filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
+  content = function(file) {
+    
+    quarto::quarto_render("ecologische_werkprotocollen.qmd", 
+                          execute_params = list(project_naam             = input$project_naam,
+                                                project_opdrachtgever    = input$project_opdrachtgever,
+                                                project_opdrachtnemer    = input$project_opdrachtnemer,
+                                                project_wettelijk_belang = input$project_wettelijk_belang,
+                                                project_activiteiten     = input$project_activiteiten,
+                                                uitvoering_start         = format(input$uitvoering_periode[1], "%Y-%m-%d"),
+                                                uitvoering_eind          = format(input$uitvoering_periode[2], "%Y-%m-%d")
+                                                
+                          ))
+    
+    file.copy("ecologische_werkprotocollen.docx", file)
+    
+  }
+)
 
 
 ```

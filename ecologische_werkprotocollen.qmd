@@ -44,7 +44,7 @@ Projectgebied: *`r params$project_gebied`*
 
 ## Periode werkzaamheden
 
-Uitvoering van de werkzaamheden vind plaats van *`r params$uitvoering_start`* tot *`r params$uitvoering_eind`*
+Uitvoering van de werkzaamheden vindt plaats van *`r params$uitvoering_start`* tot *`r params$uitvoering_eind`*
 
 ## Activiteit(en)
 
