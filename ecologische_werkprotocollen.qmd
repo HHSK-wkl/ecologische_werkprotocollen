@@ -16,6 +16,8 @@ params:
   project_activiteiten: ["Activiteit 1", "Activiteit 2"]
   uitvoering_start: "1999-01-01"
   uitvoering_eind: "1999-12-31"
+  soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
+  soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
 ---
 
 `r params$project_naam`
@@ -57,6 +59,8 @@ Combinatie van activiteiten
 *`r params$project_activiteiten`*
 
 # Beschermde soorten
+
+
 
 # Maatregelen
 
