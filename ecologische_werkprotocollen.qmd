@@ -12,13 +12,27 @@ params:
   project_opdrachtgever: "HHSK"
   project_opdrachtnemer: "Aannemer ABC"
   project_wettelijk_belang: "Festival!"
-  project_gebied: "Het gebied dat ik gekozen heb"
-  project_activiteiten: ["Activiteit 1", "Activiteit 2"]
-  uitvoering_start: "1999-01-01"
-  uitvoering_eind: "1999-12-31"
+  project_gebied: "EP"
+  project_activiteiten: ["1a"]
+  uitvoering_start: "2026-06-01"
+  uitvoering_eind: "2026-07-31"
   soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
   soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
 ---
+
+```{r}
+project_gebied <-       params$project_gebied
+project_activiteiten <- params$project_activiteiten
+uitvoering_start <-     params$uitvoering_start
+uitvoering_eind <-      params$uitvoering_eind
+```
+
+
+```{r}
+#| include: false
+#| file: R/info_uitvoeringsprotocol.R
+```
+
 
 `r params$project_naam`
 
@@ -50,26 +64,27 @@ Uitvoering van de werkzaamheden vindt plaats van *`r params$uitvoering_start`* t
 
 ## Activiteit(en)
 
-*`r params$project_activiteiten[1]`*
-
-*`r params$project_activiteiten[2]`*
-
-Combinatie van activiteiten
-
-*`r params$project_activiteiten`*
+`r activiteit_sel`
 
 # Beschermde soorten
 
+Er dient rekening te worden gehouden met de volgende soorten.
+
+`r soorten_sel`
 
 
 # Maatregelen
 
 ## Algemene maatregelen
 
-**Invullen o.b.v. type activiteit**
+Bij deze activiteit moet rekening worden gehouden met de volgende activiteiten.
+
+`r  knitr::kable(algemene_maatregelen_sel)`
 
 ## Soortspecifieke maatregel
 
-**Invullen op basis van relevante soorten**
+Aanvullend gelden voor specifieke soorten de volgende maatregelen
+
+`r  knitr::kable(soortspecifieke_maatregelen_sel)`
 
 # Bijlage - Overzicht soorten

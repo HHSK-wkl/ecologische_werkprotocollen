@@ -44,8 +44,22 @@ include-in-header:
 # Beide at render-time and at server-time
 library(tidyverse)
 library(shiny)
+library(readxl)
+
+gebieden <-
+  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "gebieden") %>% 
+  select(gebied_omschrijving, gebied_code) %>% 
+  deframe()
+
+werkzaamheden <- 
+  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "werkzaamheden") %>% 
+  select(werk_omschrijving, werk_code) %>% 
+  deframe()
+  
 
 ```
+
+
 
 # Uitvoeringsprotocol
 
@@ -60,12 +74,11 @@ textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer")
 
 selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"))
 
-selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", , choices = c("Keuze 1", "Keuze 2", "Anders")) # multiple is mogelijk
+selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", choices = werkzaamheden) # multiple is mogelijk
+
+selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden) # multiple is mogelijk
 
 dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met")
-
-
- 
 
 downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringsprotocol")
 ```
@@ -82,6 +95,14 @@ downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringspr
 ###
 
 ::: {.card title="Uitleg"}
+
+## Opmerkingen
+
+We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schieland noord (oa EDP). Het werk is maaien. De maatregel moet volgen uit de combinatie met het gebied.
+
+Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.
+
+Aandacht voor de selectie op datum - in de tabel staan nu nog datums
 
 :::
 
@@ -104,6 +125,7 @@ output$uitvoeringsprotocol <- downloadHandler(
                                                 project_opdrachtnemer    = input$project_opdrachtnemer,
                                                 project_wettelijk_belang = input$project_wettelijk_belang,
                                                 project_activiteiten     = input$project_activiteiten,
+                                                project_gebied           = input$project_gebied,
                                                 uitvoering_start         = format(input$uitvoering_periode[1], "%Y-%m-%d"),
                                                 uitvoering_eind          = format(input$uitvoering_periode[2], "%Y-%m-%d")
                                                 
