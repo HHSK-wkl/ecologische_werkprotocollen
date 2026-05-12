@@ -8,16 +8,16 @@ date: today
 embed-resources: true
 engine: knitr
 params:
-  project_naam: "TEST PROJECT"
+  project_naam: "Onderhoud polders HHSK"
   project_opdrachtgever: "HHSK"
   project_opdrachtnemer: "Aannemer ABC"
-  project_wettelijk_belang: "Festival!"
-  project_gebied: "EP"
+  project_wettelijk_belang: "Wettelijk belang van dit project"
+  project_gebied: ["GZ", "EP"]
   project_activiteiten: ["1a"]
-  uitvoering_start: "2026-06-01"
-  uitvoering_eind: "2026-07-31"
-  soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
-  soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
+  uitvoering_start: "2026-01-01"
+  uitvoering_eind: "2026-12-31"
+  # soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
+  # soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
 ---
 
 ```{r}
@@ -36,25 +36,22 @@ uitvoering_eind <-      params$uitvoering_eind
 
 `r params$project_naam`
 
+# Over dit uitvoeringsprotocol
+
+Toelichting wat dit document is
+
 # Project
 
 ## Projectinformatie
 
-Opdrachtgever: *`r params$project_opdrachtgever`*
-
-Opdrachtnemer: *`r params$project_opdrachtnemer`*
-
-Contract: ???
-
-perceel: ???
-
-specifieke locatie: ???
-
-Wettelijk belang: *`r params$project_wettelijk_belang`*
+Opdrachtgever: *`r params$project_opdrachtgever`*\
+Opdrachtnemer: *`r params$project_opdrachtnemer`*\
+Contract: ???\
+Wettelijk belang: *`r params$project_wettelijk_belang`*\
 
 ## Gebied
 
-Projectgebied: *`r params$project_gebied`*
+Projectgebied: *`r project_gebieden_sel`*
 
 **Eventueel hier een kaartje met het projectgebied**
 
@@ -70,21 +67,35 @@ Uitvoering van de werkzaamheden vindt plaats van *`r params$uitvoering_start`* t
 
 Er dient rekening te worden gehouden met de volgende soorten.
 
-`r soorten_sel`
+```{r}
+#| output: asis
+glue("- {soorten_sel}") %>% 
+  glue_collapse(sep = "\n")
+
+```
+
 
 
 # Maatregelen
+
+Voor deze werkzaamheden moeten algemene maatregelen worden genomen ter bescherming van alle aanwezige soorten. Daarnaast zijn er voor specifieke beschermde soorten extra maatregelen die noodzakelijk zijn om deze soorten te beschermen.
 
 ## Algemene maatregelen
 
 Bij deze activiteit moet rekening worden gehouden met de volgende activiteiten.
 
-`r  knitr::kable(algemene_maatregelen_sel)`
+```{r}
+#| output: asis
+algemene_maatregelen_sel
+```
 
 ## Soortspecifieke maatregel
 
 Aanvullend gelden voor specifieke soorten de volgende maatregelen
 
-`r  knitr::kable(soortspecifieke_maatregelen_sel)`
+```{r}
+#| output: asis
+soortspecifieke_maatregelen_sel
+```
 
-# Bijlage - Overzicht soorten
+
