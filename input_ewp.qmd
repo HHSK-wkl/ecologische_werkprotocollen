@@ -76,7 +76,7 @@ selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", ch
 
 selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", choices = werkzaamheden) # multiple is mogelijk
 
-selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden) # multiple is mogelijk
+selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden, multiple = TRUE) # multiple is mogelijk
 
 dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met")
 
@@ -102,7 +102,9 @@ We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schi
 
 Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.
 
-Aandacht voor de selectie op datum - in de tabel staan nu nog datums
+Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens
+
+
 
 :::
 

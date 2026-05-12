@@ -302,14 +302,14 @@ grid-auto-rows: minmax(0, 1fr);">
 <div class="form-group shiny-input-container">
 <label class="control-label" id="project_gebied-label" for="project_gebied">Gebied</label>
 <div>
-<select id="project_gebied" class="shiny-input-select"><option value="SN" selected="">Schieland noord</option>
+<select id="project_gebied" class="shiny-input-select" multiple="multiple"><option value="SN">Schieland noord</option>
 <option value="SZ">Schieland zuid incl. Krimpen a/d Ijssel</option>
 <option value="KW">Krimpenerwaard west</option>
 <option value="KO">Krimpenerwaard oost</option>
 <option value="EP">Eendragtspolder</option>
 <option value="GZ">Glastuinbouwgebied Zuidplas (Moerkapelle)</option>
 <option value="GL">Glastuinbouwgebied Lansingerland (Bleiswijk)</option></select>
-<script type="application/json" data-for="project_gebied" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+<script type="application/json" data-for="project_gebied">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
 </div>
 </div>
@@ -357,7 +357,7 @@ Opmerkingen
 </div>
 <p>We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schieland noord (oa EDP). Het werk is maaien. De maatregel moet volgen uit de combinatie met het gebied.</p>
 <p>Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.</p>
-<p>Aandacht voor de selectie op datum - in de tabel staan nu nog datums</p>
+<p>Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens</p>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
