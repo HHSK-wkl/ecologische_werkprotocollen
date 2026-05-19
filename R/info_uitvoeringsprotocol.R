@@ -1,6 +1,13 @@
 # dummy_data
 
 if(interactive()){
+  project_gebied <- c("EP")
+  project_activiteiten <- "1a"
+  uitvoering_start <-  "2026-06-01"
+  uitvoering_eind <-  "2026-08-31"
+}
+
+if(interactive()){
 project_gebied <- c("EP", "GZ")
 project_activiteiten <- "1a"
 uitvoering_start <-  "2026-01-01"
@@ -29,13 +36,19 @@ periode_sel <- interval(as_date(uitvoering_start), as_date(uitvoering_eind))
 
 maatregelen <- 
   read_excel(bestand_up, sheet = "maatregelen") %>% 
-  select(1:4)
+  select(1:4) %>% 
+  mutate(maatregel_nr = as.numeric(str_extract(maatregel_code, "\\d+")),
+         maatregel_letters = str_extract(maatregel_code, "\\D+")) %>% 
+  mutate(fase_nr = recode_values(fase, "voorbereiding" ~ 1, "uitvoering" ~ 2)) %>% 
+  arrange(fase_nr, maatregel_type, maatregel_letters, maatregel_nr) %>% 
+  mutate(maatregel_type = glue("{fase} - {maatregel_type}") |> str_to_sentence() |> fct_inorder()) 
 
 algemene_maatregelen <- 
   read_excel(bestand_up, sheet = "algemene_maatregelen") %>% 
   filter_out(is.na(maatregel_code)) %>% 
   select(-contains("omschrijving")) %>% 
-  left_join(maatregelen, by = join_by(maatregel_code))
+  left_join(maatregelen, by = join_by(maatregel_code)) 
+  
 
 soortspecifieke_maatregelen <- 
   read_excel(bestand_up, sheet = "soortspecifieke_maatregelen") %>% 
@@ -45,7 +58,10 @@ soortspecifieke_maatregelen <-
   mutate(periode_begin = make_date(year = year(Sys.Date()), month = month(periode_begin), day = day(periode_begin)),
          periode_eind  = make_date(year = year(Sys.Date()), month = month(periode_eind) , day = day(periode_eind)),
          # een extra jaar toevoegen als de jaargrens wordt gepasseerd
-         periode_eind = if_else(periode_begin > periode_eind, periode_eind + period(1, "year"), periode_eind)
+         periode_eind  = if_else(periode_begin > periode_eind, periode_eind + period(1, "year"), periode_eind),
+         # een extra jaar toevoegen als de periode is verstreken
+         periode_begin = if_else(Sys.Date() > periode_eind, periode_begin + period(1, "year"), periode_begin),
+         periode_eind  = if_else(periode_begin > periode_eind, periode_eind + period(1, "year"), periode_eind)
          ) %>% 
   mutate(periode = interval(periode_begin, periode_eind))
 
@@ -62,7 +78,6 @@ soorten_sel <-
 algemene_maatregelen_sel <-
   algemene_maatregelen %>% 
   filter(werk_code %in% project_activiteiten) %>% 
-  mutate(maatregel_code = str_pad(maatregel_code, width = 3, side = "right")) %>% 
   mutate(maatregel_tekst_basis = glue("- {maatregel_omschrijving} ({maatregel_code})")) %>% 
   group_by(maatregel_type) %>% 
   summarise(maatregel_tekst = glue_collapse(maatregel_tekst_basis, sep = "\n")) %>% 
@@ -83,8 +98,8 @@ soortspecifieke_maatregelen_sel <-
          ) %>% 
     arrange(periode_begin) %>% 
     mutate(maatregel_tekst_basis = glue("- {maatregel_omschrijving} ({maatregel_code})")) %>% 
-    select(-maatregel_omschrijving, -maatregel_code) %>%  # tijdelijk voor meer overzicht
-    group_by(periode_begin, periode_eind, periode, maatregel_type, maatregel_tekst_basis) %>% #View("basis")
+    # select(-maatregel_omschrijving, -maatregel_code) %>%  # tijdelijk voor meer overzicht
+    group_by(periode_begin, periode_eind, periode, maatregel_type, maatregel_nr, maatregel_tekst_basis) %>% #View("basis")
     summarise(soorten = glue_collapse(soort, sep = ", " )) %>% # gaat ervan uit dat een maatregel in een bepaalde periode voor een soort maar eenmaal wordt genoemd.
     group_by(soorten, periode_begin, periode_eind, periode, maatregel_type) %>% 
     summarise(maatregel_tekst = glue_collapse(maatregel_tekst_basis, sep = "\n")) %>% 
