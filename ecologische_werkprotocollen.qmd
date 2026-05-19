@@ -13,7 +13,10 @@ params:
   project_opdrachtnemer: "Aannemer ABC"
   project_wettelijk_belang: "Wettelijk belang van dit project"
   project_gebied: ["GZ", "EP"]
+  # project_gebied: ["GZ"]
   project_activiteiten: ["1a"]
+  # uitvoering_start: "2026-06-01"
+  # uitvoering_eind: "2026-08-31"
   uitvoering_start: "2026-01-01"
   uitvoering_eind: "2026-12-31"
   # soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
@@ -82,7 +85,7 @@ Voor deze werkzaamheden moeten algemene maatregelen worden genomen ter beschermi
 
 ## Algemene maatregelen
 
-Bij deze activiteit moet rekening worden gehouden met de volgende activiteiten.
+Bij deze activiteit moet rekening worden gehouden met de volgende maatregelen.
 
 ```{r}
 #| output: asis
@@ -91,7 +94,7 @@ algemene_maatregelen_sel
 
 ## Soortspecifieke maatregel
 
-Aanvullend gelden voor specifieke soorten de volgende maatregelen
+Aanvullend gelden voor specifieke soorten de volgende maatregelen.
 
 ```{r}
 #| output: asis
