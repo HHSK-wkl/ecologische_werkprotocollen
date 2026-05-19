@@ -102,8 +102,11 @@ We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schi
 
 Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.
 
-Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens
+Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens.
 
+Verbeteren layout door de hele pagina te gebruiken voor invoer
+
+Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
 
 
 :::
