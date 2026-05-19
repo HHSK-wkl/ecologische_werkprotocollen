@@ -92,7 +92,7 @@ Bij deze activiteit moet rekening worden gehouden met de volgende maatregelen.
 algemene_maatregelen_sel
 ```
 
-## Soortspecifieke maatregel
+## Soortspecifieke maatregelen
 
 Aanvullend gelden voor specifieke soorten de volgende maatregelen.
 
