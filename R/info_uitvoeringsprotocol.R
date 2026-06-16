@@ -1,17 +1,19 @@
 # dummy_data
 
 if(interactive()){
-  project_gebied <- c("EP")
+  project_gebied <- c("SN")
+  project_subgebied <- c("EP")
   project_activiteiten <- "1a"
   uitvoering_start <-  "2026-06-01"
   uitvoering_eind <-  "2026-08-31"
 }
 
 if(interactive()){
-project_gebied <- c("EP", "GZ")
-project_activiteiten <- "1a"
-uitvoering_start <-  "2026-01-01"
-uitvoering_eind <-  "2026-12-31"
+  project_gebied <- c("SN")
+  project_subgebied <- c("EP", "GZ")
+  project_activiteiten <- "1a"
+  uitvoering_start <-  "2026-01-01"
+  uitvoering_eind <-  "2026-12-31"
 }
 # Start echte script
 
@@ -19,18 +21,38 @@ library(tidyverse)
 library(readxl)
 library(glue)
 
-bestand_up <- "data/opzet_data_input_ingevuld.xlsx"
+
+
+bestand_up <- 
+  tibble(up_bestanden = list.files("data/", pattern = "^maatregelen_uitvoeringsprotocol", full.names = TRUE)) %>% 
+  mutate(datum = ymd(str_extract(up_bestanden, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(up_bestanden)
+
 
 gebieden <- read_excel(bestand_up, sheet = "gebieden") 
 werkzaamheden <- read_excel(bestand_up, sheet = "werkzaamheden") 
 soorten <- read_excel(bestand_up, sheet = "soorten") 
-gebied_soorten <- read_excel(bestand_up, sheet = "gebied_soorten") 
+gebied_soorten <- 
+  read_excel(bestand_up, sheet = "gebied_soorten") %>% 
+  filter_out(is.na(gebied_code))
 
 project_gebieden_sel <- 
   gebieden %>% 
   filter(gebied_code %in% project_gebied) %>% 
+  select(gebied_omschrijving) %>% 
+  distinct() %>% 
   pull(gebied_omschrijving) %>% 
   glue_collapse(sep = ", ", last = " en ")
+
+project_subgebieden_sel <- 
+  gebieden %>% 
+  filter(gebied_code %in% project_gebied, subgebied_code %in% project_subgebied) %>% 
+  select(subgebied_omschrijving) %>% 
+  distinct() %>% 
+  pull(subgebied_omschrijving) %>% 
+  glue_collapse(sep = ", ", last = " en ")
+
 
 periode_sel <- interval(as_date(uitvoering_start), as_date(uitvoering_eind))
 
