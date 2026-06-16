@@ -108,6 +108,9 @@ Verbeteren layout door de hele pagina te gebruiken voor invoer
 
 Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
 
+Als bijlage tabel met soorten, soortgroep en herkomt bescherming (tabblad soorten).
+
+Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.
 
 :::
 
