@@ -12,23 +12,26 @@ params:
   project_opdrachtgever: "HHSK"
   project_opdrachtnemer: "Aannemer ABC"
   project_wettelijk_belang: "Wettelijk belang van dit project"
-  project_gebied: ["GZ", "EP"]
-  # project_gebied: ["GZ"]
+  project_gebied: ["SN"]
+  # project_subgebied: ["GZ", "EP"]
+  project_subgebied: ["GZ"]
   project_activiteiten: ["1a"]
-  habitatbenadering: true
-  # uitvoering_start: "2026-06-01"
-  # uitvoering_eind: "2026-08-31"
-  uitvoering_start: "2026-01-01"
-  uitvoering_eind: "2026-12-31"
+  project_habitatbenadering: true
+  uitvoering_start: "2026-06-01"
+  uitvoering_eind: "2026-08-31"
+  # uitvoering_start: "2026-01-01"
+  # uitvoering_eind: "2026-12-31"
   # soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
   # soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
 ---
 
 ```{r}
-project_gebied <-       params$project_gebied
-project_activiteiten <- params$project_activiteiten
-uitvoering_start <-     params$uitvoering_start
-uitvoering_eind <-      params$uitvoering_eind
+project_gebied <-            params$project_gebied
+project_subgebied <-         params$project_subgebied
+project_activiteiten <-      params$project_activiteiten
+project_habitatbenadering <- params$project_habitatbenadering
+uitvoering_start <-          params$uitvoering_start
+uitvoering_eind <-           params$uitvoering_eind
 ```
 
 
@@ -56,6 +59,8 @@ Wettelijk belang: *`r params$project_wettelijk_belang`*\
 ## Gebied
 
 Projectgebied: *`r project_gebieden_sel`*
+
+Projectsubgebied(en): *`r project_subgebieden_sel`*
 
 **Eventueel hier een kaartje met het projectgebied**
 

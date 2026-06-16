@@ -1,27 +1,34 @@
+
+# Setup -------------------------------------------------------------------
+
 # dummy_data
 
-if(interactive()){
-  project_gebied <- c("SN")
-  project_subgebied <- c("EP")
-  project_activiteiten <- "1a"
-  uitvoering_start <-  "2026-06-01"
-  uitvoering_eind <-  "2026-08-31"
-}
-
+# uitgebreid
 if(interactive()){
   project_gebied <- c("SN")
   project_subgebied <- c("EP", "GZ")
   project_activiteiten <- "1a"
   uitvoering_start <-  "2026-01-01"
   uitvoering_eind <-  "2026-12-31"
+  project_habitatbenadering <- TRUE
 }
-# Start echte script
+
+# simpel
+if(interactive()){
+  project_gebied <- c("SN")
+  project_subgebied <- c("EP")
+  project_activiteiten <- "1a"
+  uitvoering_start <-  "2026-06-01"
+  uitvoering_eind <-  "2026-08-31"
+  project_habitatbenadering <- TRUE
+}
+
 
 library(tidyverse)
 library(readxl)
 library(glue)
 
-
+# Inlezen data ------------------------------------------------------------
 
 bestand_up <- 
   tibble(up_bestanden = list.files("data/", pattern = "^maatregelen_uitvoeringsprotocol", full.names = TRUE)) %>% 
@@ -37,28 +44,13 @@ gebied_soorten <-
   read_excel(bestand_up, sheet = "gebied_soorten") %>% 
   filter_out(is.na(gebied_code))
 
-project_gebieden_sel <- 
-  gebieden %>% 
-  filter(gebied_code %in% project_gebied) %>% 
-  select(gebied_omschrijving) %>% 
-  distinct() %>% 
-  pull(gebied_omschrijving) %>% 
-  glue_collapse(sep = ", ", last = " en ")
-
-project_subgebieden_sel <- 
-  gebieden %>% 
-  filter(gebied_code %in% project_gebied, subgebied_code %in% project_subgebied) %>% 
-  select(subgebied_omschrijving) %>% 
-  distinct() %>% 
-  pull(subgebied_omschrijving) %>% 
-  glue_collapse(sep = ", ", last = " en ")
-
-
-periode_sel <- interval(as_date(uitvoering_start), as_date(uitvoering_eind))
-
 maatregelen <- 
   read_excel(bestand_up, sheet = "maatregelen") %>% 
-  select(1:4) %>% 
+  mutate(habitatbenadering = case_when(
+    str_to_upper(habitatbenadering) == "JA" ~ TRUE, 
+    str_to_upper(habitatbenadering) == "NEE" ~ FALSE,
+    .default = NA)) %>%
+  # select(1:4) %>% 
   mutate(maatregel_nr = as.numeric(str_extract(maatregel_code, "\\d+")),
          maatregel_letters = str_extract(maatregel_code, "\\D+")) %>% 
   mutate(fase_nr = recode_values(fase, "voorbereiding" ~ 1, "uitvoering" ~ 2)) %>% 
@@ -87,13 +79,38 @@ soortspecifieke_maatregelen <-
          ) %>% 
   mutate(periode = interval(periode_begin, periode_eind))
 
+
+# Selectie van soorten en maatregelen -------------------------------------
+
+project_gebieden_sel <- 
+  gebieden %>% 
+  filter(gebied_code %in% project_gebied) %>% 
+  select(gebied_omschrijving) %>% 
+  distinct() %>% 
+  pull(gebied_omschrijving) %>% 
+  glue_collapse(sep = ", ", last = " en ")
+
+project_subgebieden_sel <- 
+  gebieden %>% 
+  filter(gebied_code %in% project_gebied, subgebied_code %in% project_subgebied) %>% 
+  select(subgebied_omschrijving) %>% 
+  distinct() %>% 
+  pull(subgebied_omschrijving) %>% 
+  glue_collapse(sep = ", ", last = " en ")
+
+
+periode_sel <- interval(as_date(uitvoering_start), as_date(uitvoering_eind))
+
 activiteit_sel <- 
-  werkzaamheden %>% filter(werk_code %in% project_activiteiten) %>% 
+  werkzaamheden %>% 
+  filter(werk_code %in% project_activiteiten) %>% 
   pull(werk_omschrijving)
 
 soorten_sel <-
   gebied_soorten %>% 
-  filter(gebied_code %in% project_gebied) %>% 
+  filter(gebied_code %in% project_gebied,
+         is.na(subgebied_code) | subgebied_code %in% project_subgebied,
+         !is.na(soort)) %>% 
   pull(soort)
 
 
