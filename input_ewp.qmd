@@ -98,23 +98,23 @@ downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringspr
 
 ## Opmerkingen
 
-We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schieland noord (oa EDP). Het werk is maaien. De maatregel moet volgen uit de combinatie met het gebied.
-
-Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.
-
-Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens.
-
-Verbeteren layout door de hele pagina te gebruiken voor invoer
-
-Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
-
-Als bijlage tabel met soorten, soortgroep en herkomt bescherming (tabblad soorten).
-
-Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.
+Er wordt altijd uitgegaan van de eerstvolgende periode, zo nodig over de jaargrens heen
 
 :::
 
-::: {.card title="Meer uitleg"}
+::: {.card title="To Do"}
+
+TO DO
+
+- Kaartje opnemen met subgebieden
+- Dynamisch genereren subgebieden
+- Vinkje voor habitatbenadering
+- Verbeteren layout door de hele pagina te gebruiken voor invoer
+- Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
+- Als bijlage tabel met soorten, soortgroep en herkomt bescherming (tabblad soorten).
+- Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.
+-  Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd. Checks opnemen in code en/of excelsheet
+
 
 :::
 
