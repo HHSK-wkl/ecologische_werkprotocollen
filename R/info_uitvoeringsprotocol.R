@@ -111,6 +111,8 @@ soorten_sel <-
   filter(gebied_code %in% project_gebied,
          is.na(subgebied_code) | subgebied_code %in% project_subgebied,
          !is.na(soort)) %>% 
+  select(soort) %>% 
+  distinct() %>% 
   pull(soort)
 
 
