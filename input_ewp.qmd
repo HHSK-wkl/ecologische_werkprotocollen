@@ -84,17 +84,13 @@ werkzaamheden <-
 ```{r}
 #| title: "Werkzaamheden"
 
-selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", choices = werkzaamheden,width = "90%") # multiple is mogelijk
+selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden*", choices = werkzaamheden,width = "90%") # multiple is mogelijk
 
-dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met", width = "90%")
+dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering*", language = "nl", separator = "tot en met", width = "90%")
 
-selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden, width = "90%") # multiple is mogelijk
-
-# uiOutput("project_subgebied_ui", fill = TRUE)
+selectInput(inputId = "project_gebied", label = "Gebied*", choices = gebieden, width = "90%") # multiple is mogelijk
 
 checkboxGroupInput("project_subgebied", label = "Subgebieden", width = "90%")
-
-
 
 ```
 
@@ -110,6 +106,10 @@ textInput(inputId = "project_opdrachtgever", label = "Opdrachtgever", value = "H
 textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer", width = "90%")
 
 selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"), width = "90%")
+
+strong("Wordt habitatbenadering toegepast?*")
+
+checkboxInput("project_habitatbenadering", label = "Habitatbenadering", width = "90%", value = TRUE)
 ```
 
 ## Rij 2
@@ -129,9 +129,11 @@ downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringspr
 
 ::: {.card title="Uitleg"}
 
+De velden met een sterretje (*) zijn verplicht om in te vullen.
+
 ## Opmerkingen
 
-Er wordt altijd uitgegaan van de eerstvolgende periode, zo nodig over de jaargrens heen
+Er wordt altijd uitgegaan van de eerstvolgende periode, zo nodig over de jaargrens heen.
 
 :::
 
@@ -140,14 +142,11 @@ Er wordt altijd uitgegaan van de eerstvolgende periode, zo nodig over de jaargre
 TO DO
 
 - Kaartje opnemen met subgebieden
-- Dynamisch genereren subgebieden
-- Vinkje voor habitatbenadering
-- Verbeteren layout door de hele pagina te gebruiken voor invoer
 - Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
-- Als bijlage tabel met soorten, soortgroep en herkomt bescherming (tabblad soorten).
 - Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.
 -  Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd. Checks opnemen in code en/of excelsheet.
 - Oplossen dubbellingen in maatregel S25 witsnuitlibellen
+- Niet alle soorten in de tabel gebied_soorten staan ook in de tabel soorten.
 
 
 :::
@@ -198,7 +197,7 @@ observe({
 
 
 output$uitvoeringsprotocol <- downloadHandler(
-  filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
+  filename = paste0("ecologisch_werkprotocol_", format(Sys.time(), "%Y-%m-%d %H_%M"), ".docx"),
   content = function(file) {
     
     quarto::quarto_render("ecologische_werkprotocollen.qmd", 
@@ -209,6 +208,7 @@ output$uitvoeringsprotocol <- downloadHandler(
                                                 project_activiteiten     = input$project_activiteiten,
                                                 project_gebied           = input$project_gebied,
                                                 project_subgebied        = input$project_subgebied,
+                                                project_habitatbenadering= input$project_habitatbenadering,
                                                 uitvoering_start         = format(input$uitvoering_periode[1], "%Y-%m-%d"),
                                                 uitvoering_eind          = format(input$uitvoering_periode[2], "%Y-%m-%d")
                                                 
