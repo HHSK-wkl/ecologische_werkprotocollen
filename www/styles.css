@@ -1,0 +1,4 @@
+.input-group>.form-control, .input-group>.form-select, .input-group>.form-floating {
+    width: 100%;
+    min-width: 0;
+}
