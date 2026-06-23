@@ -5,6 +5,7 @@ format:
     orientation: rows
 server: shiny
 logo: "www/logo_wit.png"
+css: "www/styles.css"
 execute:
   echo: false
   warning: false
@@ -46,45 +47,77 @@ library(tidyverse)
 library(shiny)
 library(readxl)
 
+bestand_up <- 
+  tibble(up_bestanden = list.files("data/", pattern = "^maatregelen_uitvoeringsprotocol", full.names = TRUE)) %>% 
+  mutate(datum = ymd(str_extract(up_bestanden, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(up_bestanden)
+
+gebieden_df <- read_excel(bestand_up, sheet = "gebieden")
+
 gebieden <-
-  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "gebieden") %>% 
+  gebieden_df %>% 
   select(gebied_omschrijving, gebied_code) %>% 
+  distinct() %>% 
+  deframe()
+
+subgebieden <-
+  gebieden_df %>% 
+  select(subgebied_omschrijving, subgebied_code) %>% 
+  distinct() %>% 
   deframe()
 
 werkzaamheden <- 
-  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "werkzaamheden") %>% 
+  read_excel(bestand_up, sheet = "werkzaamheden") %>% 
   select(werk_omschrijving, werk_code) %>% 
   deframe()
-  
-
 ```
 
 
 
 # Uitvoeringsprotocol
 
-##  {.sidebar width="30%"}
+## Rij 1 {height="600px"}
+
+### Kolom 1.2
 
 ```{r}
-textInput(inputId = "project_naam", label = "Projectnaam")
+#| title: "Werkzaamheden"
 
-textInput(inputId = "project_opdrachtgever", label = "Opdrachtgever", value = "HHSK")
+selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", choices = werkzaamheden,width = "90%") # multiple is mogelijk
 
-textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer")
+dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met", width = "90%")
 
-selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"))
+selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden, width = "90%") # multiple is mogelijk
 
-selectInput(inputId = "project_activiteiten", label = "Type werkzaamheden", choices = werkzaamheden) # multiple is mogelijk
+# uiOutput("project_subgebied_ui", fill = TRUE)
 
-selectInput(inputId = "project_gebied", label = "Gebied", choices = gebieden, multiple = TRUE) # multiple is mogelijk
+checkboxGroupInput("project_subgebied", label = "Subgebieden", width = "90%")
 
-dateRangeInput(inputId = "uitvoering_periode", "Periode uitvoering", language = "nl", separator = "tot en met")
 
-downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringsprotocol")
+
 ```
 
 
-## Main panel
+### Kolom 1.2
+
+```{r}
+#| title: "Projectinformatie"
+textInput(inputId = "project_naam", label = "Projectnaam", width = "90%")
+
+textInput(inputId = "project_opdrachtgever", label = "Opdrachtgever", value = "HHSK", width = "90%")
+
+textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer", width = "90%")
+
+selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"), width = "90%")
+```
+
+## Rij 2
+
+```{r}
+#| height: 80px
+downloadButton(outputId = "uitvoeringsprotocol", label = "Download uitvoeringsprotocol")
+```
 
 
 
@@ -113,7 +146,8 @@ TO DO
 - Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.
 - Als bijlage tabel met soorten, soortgroep en herkomt bescherming (tabblad soorten).
 - Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.
--  Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd. Checks opnemen in code en/of excelsheet
+-  Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd. Checks opnemen in code en/of excelsheet.
+- Oplossen dubbellingen in maatregel S25 witsnuitlibellen
 
 
 :::
@@ -122,6 +156,46 @@ TO DO
 
 ```{r}
 #| context: server
+
+# output$project_subgebied_ui <- renderUI({
+#   
+#   req(input$project_gebied)
+#   
+#   choices_sel <- 
+#     gebieden_df %>% 
+#     filter(gebied_code == input$project_gebied) %>% 
+#     select(subgebied_omschrijving, subgebied_code) %>% 
+#     distinct() %>% 
+#     deframe()
+#   
+#   checkboxGroupInput("project_subgebied", label = "Subgebieden", choices = choices_sel, selected = choices_sel)
+#   
+# })
+
+subgebieden_choices <- reactive({
+  gebieden_df %>% 
+    filter(gebied_code == input$project_gebied) %>%
+    select(subgebied_omschrijving, subgebied_code) %>%
+    distinct() %>%
+    deframe()
+  })
+
+observe({
+  
+  input$project_gebied
+  
+  choices_sel <- 
+    gebieden_df %>%
+    filter(gebied_code == input$project_gebied) %>%
+    select(subgebied_omschrijving, subgebied_code) %>%
+    distinct() %>%
+    deframe()
+  
+  shiny::updateCheckboxGroupInput(inputId = "project_subgebied", choices = choices_sel, selected = choices_sel)
+  
+  
+})
+
 
 output$uitvoeringsprotocol <- downloadHandler(
   filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
@@ -134,6 +208,7 @@ output$uitvoeringsprotocol <- downloadHandler(
                                                 project_wettelijk_belang = input$project_wettelijk_belang,
                                                 project_activiteiten     = input$project_activiteiten,
                                                 project_gebied           = input$project_gebied,
+                                                project_subgebied        = input$project_subgebied,
                                                 uitvoering_start         = format(input$uitvoering_periode[1], "%Y-%m-%d"),
                                                 uitvoering_eind          = format(input$uitvoering_periode[2], "%Y-%m-%d")
                                                 
