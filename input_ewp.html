@@ -53,9 +53,10 @@ ul.task-list li input[type="checkbox"] {
 <link rel="shortcut icon" href="www/favicon.svg">
 
 
+<link rel="stylesheet" href="www/styles.css">
 </head>
 
-<body class="quarto-dashboard dashboard-fill dashboard-sidebar fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="quarto-dashboard dashboard-fill fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -244,49 +245,23 @@ ul.task-list li input[type="checkbox"] {
 
 <!--#  Execution - zie: https://quarto.org/docs/interactive/shiny/execution.html-->
 <div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div id="uitvoeringsprotocol" class="dashboard-page tab-pane show active html-fill-item html-fill-container dashboard-sidebar-container" data-orientation="rows" aria-labelledby="tab-uitvoeringsprotocol">
-<div class="bslib-sidebar-layout html-fill-item html-fill-container" data-bslib-sidebar-open="desktop" data-bslib-sidebar-init="true" style=" --bslib-sidebar-width: 30%" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false"><div class="main html-fill-container html-fill-item"><div class="sidebar-content html-fill-item html-fill-container">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: ;
+<div id="uitvoeringsprotocol" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-uitvoeringsprotocol">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: 600px minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
 grid-auto-rows: minmax(0, 1fr);">
-
-</div>
-</div></div><aside id="bslib-sidebar-1" class="sidebar html-fill-container html-fill-item"><div class="html-fill-item html-fill-container">
-<div class="cell-output-display">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_naam-label" for="project_naam">Projectnaam</label>
-<input id="project_naam" type="text" class="shiny-input-text form-control" value="" data-update-on="change">
-</div>
-</div>
-<div class="cell-output-display">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_opdrachtgever-label" for="project_opdrachtgever">Opdrachtgever</label>
-<input id="project_opdrachtgever" type="text" class="shiny-input-text form-control" value="HHSK" data-update-on="change">
-</div>
-</div>
-<div class="cell-output-display">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_opdrachtnemer-label" for="project_opdrachtnemer">Opdrachtnemer</label>
-<input id="project_opdrachtnemer" type="text" class="shiny-input-text form-control" value="" data-update-on="change">
-</div>
-</div>
-<div class="cell-output-display no-overflow-x">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_wettelijk_belang-label" for="project_wettelijk_belang">Wettelijk belang</label>
-<div>
-<select id="project_wettelijk_belang" class="shiny-input-select"><option value="Keuze 1" selected="">Keuze 1</option>
-<option value="Keuze 2">Keuze 2</option>
-<option value="Anders">Anders</option></select>
-<script type="application/json" data-for="project_wettelijk_belang" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
-</div>
-</div>
-</div>
-<div class="cell-output-display no-overflow-x">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_activiteiten-label" for="project_activiteiten">Type werkzaamheden</label>
-<div>
-<select id="project_activiteiten" class="shiny-input-select"><option value="1a" selected="">Schonen en maaien oevers tot in de waterlijn - Schieland Noord</option>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Werkzaamheden" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Werkzaamheden
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container no-overflow-x">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_activiteiten-label" for="project_activiteiten">Type werkzaamheden*</label>
+<div class="html-fill-item html-fill-container">
+<select id="project_activiteiten" class="shiny-input-select"><option value="1a" selected="">Schonen water en maaien oevers Schieland en Krimpen ad IJssel</option>
 <option value="1b">Schonen van wateren - Krimpenerwaard</option>
-<option value="1c">Onderhoud natuurvriendelijke oevers inclusief uitkrabben</option>
+<option value="1c">Uitkrabben natuurvriendelijke oevers</option>
 <option value="2a">Maaien van primaire waterkeringen</option>
 <option value="2b">Maaien van regionale waterkeringen</option>
 <option value="2c">Maaien van wegbermen en oevers tot aan de waterlijn</option>
@@ -298,25 +273,10 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 </div>
 </div>
-<div class="cell-output-display no-overflow-x">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="project_gebied-label" for="project_gebied">Gebied</label>
-<div>
-<select id="project_gebied" class="shiny-input-select" multiple="multiple"><option value="SN">Schieland noord</option>
-<option value="SZ">Schieland zuid incl. Krimpen a/d Ijssel</option>
-<option value="KW">Krimpenerwaard west</option>
-<option value="KO">Krimpenerwaard oost</option>
-<option value="EP">Eendragtspolder</option>
-<option value="GZ">Glastuinbouwgebied Zuidplas (Moerkapelle)</option>
-<option value="GL">Glastuinbouwgebied Lansingerland (Bleiswijk)</option></select>
-<script type="application/json" data-for="project_gebied">{"plugins":["selectize-plugin-a11y"]}</script>
-</div>
-</div>
-</div>
-<div class="cell-output-display">
-<div id="uitvoering_periode" class="shiny-date-range-input form-group shiny-input-container">
-<label class="control-label" id="uitvoering_periode-label" for="uitvoering_periode">Periode uitvoering</label>
-<div class="input-daterange input-group input-group-sm">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="uitvoering_periode" class="shiny-date-range-input form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="uitvoering_periode-label" for="uitvoering_periode">Periode uitvoering*</label>
+<div class="input-daterange input-group input-group-sm html-fill-item html-fill-container">
 <input class="form-control" type="text" aria-labelledby="uitvoering_periode-label" title="Date format: yyyy-mm-dd" data-date-language="nl" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="month" data-date-autoclose="true">
 <span class="input-group-addon input-group-prepend input-group-append">
 <span class="input-group-text">tot en met</span>
@@ -325,39 +285,24 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 </div>
 </div>
-<div class="cell-output-display">
-<a id="uitvoeringsprotocol" class="btn btn-default shiny-download-link disabled" href="" target="_blank" download="" aria-disabled="true" tabindex="-1">
-<i class="fas fa-download" role="presentation" aria-label="download icon"></i>
-Download uitvoeringsprotocol
-</a>
-</div>
-</div></aside>
-<button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-1">
-    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img">
-      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-    </svg>
-</button>
-<script data-bslib-sidebar-init="">
-bslib.Sidebar.initCollapsibleAll()
-</script>
+<div class="cell-output-display html-fill-item html-fill-container no-overflow-x">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_gebied-label" for="project_gebied">Gebied*</label>
+<div class="html-fill-item html-fill-container">
+<select id="project_gebied" class="shiny-input-select"><option value="SN" selected="">Schieland noord</option>
+<option value="SZ">Schieland zuid incl. Krimpen a/d Ijssel</option>
+<option value="KW">Krimpenerwaard west</option>
+<option value="KO">Krimpenerwaard oost</option></select>
+<script type="application/json" data-for="project_gebied" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
 </div>
-<div id="toelichting" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-toelichting">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card html-fill-item html-fill-container bslib-card" data-title="Uitleg" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-header"><div class="card-title"><span style="display: inline">
-Uitleg
-</span></div></div>
-<div class="card-body html-fill-item html-fill-container">
-<div class="h4">
-Opmerkingen
 </div>
-<p>We hebben een gebied Schieland Noord en dat is niet hetzelfde als maaien in Schieland noord (oa EDP). Het werk is maaien. De maatregel moet volgen uit de combinatie met het gebied.</p>
-<p>Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd.</p>
-<p>Aandacht voor de selectie op datum - in de tabel staan nu nog datums - problemen kunnen ook ontstaan bij overgang van de jaargrens</p>
+<div class="cell-output-display html-fill-item html-fill-container">
+<div id="project_subgebied" style="width:90%;" class="form-group shiny-input-checkboxgroup shiny-input-container html-fill-item html-fill-container" role="group" aria-labelledby="project_subgebied-label">
+<label class="control-label" id="project_subgebied-label" for="project_subgebied">Subgebieden</label>
+<div class="shiny-options-group html-fill-item html-fill-container"></div>
+</div>
+</div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
@@ -365,10 +310,120 @@ Opmerkingen
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<div class="card html-fill-item html-fill-container bslib-card" data-title="Meer uitleg" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Projectinformatie" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-header"><div class="card-title"><span style="display: inline">
-Meer uitleg
+Projectinformatie
 </span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_naam-label" for="project_naam">Projectnaam</label>
+<input id="project_naam" type="text" class="shiny-input-text form-control" value="" data-update-on="change">
+</div>
+</div>
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_opdrachtgever-label" for="project_opdrachtgever">Opdrachtgever</label>
+<input id="project_opdrachtgever" type="text" class="shiny-input-text form-control" value="HHSK" data-update-on="change">
+</div>
+</div>
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_opdrachtnemer-label" for="project_opdrachtnemer">Opdrachtnemer</label>
+<input id="project_opdrachtnemer" type="text" class="shiny-input-text form-control" value="" data-update-on="change">
+</div>
+</div>
+<div class="cell-output-display html-fill-item html-fill-container no-overflow-x">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<label class="control-label" id="project_wettelijk_belang-label" for="project_wettelijk_belang">Wettelijk belang</label>
+<div class="html-fill-item html-fill-container">
+<select id="project_wettelijk_belang" class="shiny-input-select"><option value="Keuze 1" selected="">Keuze 1</option>
+<option value="Keuze 2">Keuze 2</option>
+<option value="Anders">Anders</option></select>
+<script type="application/json" data-for="project_wettelijk_belang" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</div>
+<div class="cell-output-display html-fill-item html-fill-container">
+<strong>Wordt habitatbenadering toegepast?*</strong>
+</div>
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="form-group shiny-input-container html-fill-item html-fill-container" style="width:90%;">
+<div class="checkbox html-fill-item html-fill-container">
+<label>
+<input id="project_habitatbenadering" type="checkbox" class="shiny-input-checkbox" checked="checked">
+<span>Habitatbenadering</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false" style="height: 80px;">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<a id="uitvoeringsprotocol" class="btn btn-default shiny-download-link disabled" href="" target="_blank" download="" aria-disabled="true" tabindex="-1">
+<i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+Download uitvoeringsprotocol
+</a>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="toelichting" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-toelichting">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Uitleg" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Uitleg
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>De velden met een sterretje (*) zijn verplicht om in te vullen.</p>
+<div class="h4">
+Opmerkingen
+</div>
+<p>Er wordt altijd uitgegaan van de eerstvolgende periode, zo nodig over de jaargrens heen.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card html-fill-item html-fill-container bslib-card" data-title="To Do" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+To Do
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>TO DO</p>
+<ul>
+<li>Kaartje opnemen met subgebieden</li>
+<li>Eventueel nog extra UI functionaliteit om te checken op alle invoer etc.</li>
+<li>Uitleg hoe de maatregelen geselecteerd worden uit de verschillende tabbladen.</li>
+<li>Het systeem werkt alleen goed als alle codes bestaan en op de juiste plek zijn gedefinieerd. Checks opnemen in code en/of excelsheet.</li>
+<li>Oplossen dubbellingen in maatregel S25 witsnuitlibellen</li>
+<li>Niet alle soorten in de tabel gebied_soorten staan ook in de tabel soorten.</li>
+</ul>
+</div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
     <span class="bslib-full-screen-enter badge rounded-pill">
@@ -395,22 +450,88 @@ library(tidyverse)
 library(shiny)
 library(readxl)
 
+bestand_up <- 
+  tibble(up_bestanden = list.files("data/", pattern = "^maatregelen_uitvoeringsprotocol", full.names = TRUE)) %>% 
+  mutate(datum = ymd(str_extract(up_bestanden, "\\d{4}-\\d{2}-\\d{2}"))) %>% 
+  filter(datum == max(datum, na.rm = TRUE)) %>% 
+  pull(up_bestanden)
+
+gebieden_df <- read_excel(bestand_up, sheet = "gebieden")
+
 gebieden <-
-  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "gebieden") %>% 
+  gebieden_df %>% 
   select(gebied_omschrijving, gebied_code) %>% 
+  distinct() %>% 
   deframe()
+
+subgebieden <-
+  gebieden_df %>% 
+  select(subgebied_omschrijving, subgebied_code) %>% 
+  distinct() %>% 
+  deframe()
+
+werk_altijd_habitat <- 
+  read_excel(bestand_up, sheet = "werkzaamheden") %>% 
+  filter(altijd_habitatbenadering) %>% 
+  pull(werk_code)
 
 werkzaamheden <- 
-  read_excel("data/opzet_data_input_ingevuld.xlsx", sheet = "werkzaamheden") %>% 
+  read_excel(bestand_up, sheet = "werkzaamheden") %>% 
   select(werk_omschrijving, werk_code) %>% 
   deframe()
-  
-
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
+# output$project_subgebied_ui <- renderUI({
+#   
+#   req(input$project_gebied)
+#   
+#   choices_sel <- 
+#     gebieden_df %>% 
+#     filter(gebied_code == input$project_gebied) %>% 
+#     select(subgebied_omschrijving, subgebied_code) %>% 
+#     distinct() %>% 
+#     deframe()
+#   
+#   checkboxGroupInput("project_subgebied", label = "Subgebieden", choices = choices_sel, selected = choices_sel)
+#   
+# })
+
+subgebieden_choices <- reactive({
+  gebieden_df %>% 
+    filter(gebied_code == input$project_gebied) %>%
+    select(subgebied_omschrijving, subgebied_code) %>%
+    distinct() %>%
+    deframe()
+  })
+
+observe({
+  
+  input$project_gebied
+  
+  choices_sel <- 
+    gebieden_df %>%
+    filter(gebied_code == input$project_gebied) %>%
+    select(subgebied_omschrijving, subgebied_code) %>%
+    distinct() %>%
+    deframe()
+  
+  updateCheckboxGroupInput(inputId = "project_subgebied", choices = choices_sel, selected = choices_sel)
+  
+})
+
+observe({
+  input$project_habitatbenadering
+
+  if(input$project_activiteiten %in% werk_altijd_habitat){
+  
+    updateCheckboxInput(inputId = "project_habitatbenadering", value = TRUE)
+  }
+})
+
+
 output$uitvoeringsprotocol <- downloadHandler(
-  filename = paste0("ecologisch_werkprotocol_", Sys.time(), ".docx"),
+  filename = paste0("ecologisch_werkprotocol_", format(Sys.time(), "%Y-%m-%d %H_%M"), ".docx"),
   content = function(file) {
     
     quarto::quarto_render("ecologische_werkprotocollen.qmd", 
@@ -420,6 +541,8 @@ output$uitvoeringsprotocol <- downloadHandler(
                                                 project_wettelijk_belang = input$project_wettelijk_belang,
                                                 project_activiteiten     = input$project_activiteiten,
                                                 project_gebied           = input$project_gebied,
+                                                project_subgebied        = input$project_subgebied,
+                                                project_habitatbenadering= input$project_habitatbenadering,
                                                 uitvoering_start         = format(input$uitvoering_periode[1], "%Y-%m-%d"),
                                                 uitvoering_eind          = format(input$uitvoering_periode[2], "%Y-%m-%d")
                                                 
@@ -475,7 +598,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 </p>
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap-datepicker-js"]},{"type":"character","attributes":{},"value":["1.9.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/datepicker"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/bootstrap-datepicker.min.js"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["<script>(function() {\n        var datepicker = $.fn.datepicker.noConflict();\n        $.fn.bsDatepicker = datepicker;\n      })();\n     <\/script>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap-datepicker-css"]},{"type":"character","attributes":{},"value":["1.9.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/datepicker"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/bootstrap-datepicker3.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]}]}
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap-datepicker-js"]},{"type":"character","attributes":{},"value":["1.9.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/datepicker"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/bootstrap-datepicker.min.js"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["<script>(function() {\n        var datepicker = $.fn.datepicker.noConflict();\n        $.fn.bsDatepicker = datepicker;\n      })();\n     <\/script>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap-datepicker-css"]},{"type":"character","attributes":{},"value":["1.9.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/datepicker"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/bootstrap-datepicker3.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["selectize"]},{"type":"character","attributes":{},"value":["0.15.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["www/shared/selectize"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/selectize.min.js","accessibility/js/selectize-plugin-a11y.min.js"]},{"type":"character","attributes":{},"value":["css/selectize.bootstrap3.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["shiny"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.11.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]}]}
 </script>
 <!--/html_preserve-->
 <!--html_preserve-->
