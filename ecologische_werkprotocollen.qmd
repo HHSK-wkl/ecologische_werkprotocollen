@@ -13,14 +13,14 @@ params:
   project_opdrachtnemer: "Aannemer ABC"
   project_wettelijk_belang: "Wettelijk belang van dit project"
   project_gebied: ["SN"]
-  # project_subgebied: ["GZ", "EP"]
-  project_subgebied: ["GZ"]
+  project_subgebied: ["GZ", "EP"]
+  # project_subgebied: ["GZ"]
   project_activiteiten: ["1a"]
   project_habitatbenadering: true
-  uitvoering_start: "2026-06-01"
-  uitvoering_eind: "2026-08-31"
-  # uitvoering_start: "2026-01-01"
-  # uitvoering_eind: "2026-12-31"
+  # uitvoering_start: "2026-06-01"
+  # uitvoering_eind: "2026-08-31"
+  uitvoering_start: "2026-01-01"
+  uitvoering_eind: "2026-12-31"
   # soorten_aanwezig: ["Soort 1", "Soort 2", "Soort 3"]
   # soorten_habitat: ["Soort 1", "Soort 2", "Soort 3", "Soort 4"]
 ---
@@ -43,18 +43,23 @@ uitvoering_eind <-           params$uitvoering_eind
 
 `r params$project_naam`
 
+{{< pagebreak >}}
+
 # Over dit uitvoeringsprotocol
 
 Toelichting wat dit document is
 
+{{< pagebreak >}}
+
 # Project
 
-## Projectinformatie
+## Werkzaamheden
 
-Opdrachtgever: *`r params$project_opdrachtgever`*\
-Opdrachtnemer: *`r params$project_opdrachtnemer`*\
-Contract: ???\
-Wettelijk belang: *`r params$project_wettelijk_belang`*\
+`r activiteit_sel`
+
+## Periode werkzaamheden
+
+Uitvoering van de werkzaamheden vindt plaats van *`r params$uitvoering_start`* tot *`r params$uitvoering_eind`*
 
 ## Gebied
 
@@ -64,25 +69,43 @@ Projectsubgebied(en): *`r project_subgebieden_sel`*
 
 **Eventueel hier een kaartje met het projectgebied**
 
-## Periode werkzaamheden
+```{r}
+#| label: tekst-habitatbenadering
+#| include: false
 
-Uitvoering van de werkzaamheden vindt plaats van *`r params$uitvoering_start`* tot *`r params$uitvoering_eind`*
+if (project_habitatbenadering){
+  habitatbenadering_tekst <- "Voor dit project wordt de habitatbenadering toegepast."
+} else {
+  habitatbenadering_tekst <- "Voor dit project wordt de habitatbenadering **niet** toegepast."
+}
 
-## Activiteit(en)
+```
 
-`r activiteit_sel`
+## Habitatbenadering
+
+`r habitatbenadering_tekst`
+
+## Overige projectinformatie
+
+Opdrachtgever: `r params$project_opdrachtgever`\
+Opdrachtnemer: `r params$project_opdrachtnemer`\
+Contract: ???\
+Wettelijk belang: `r params$project_wettelijk_belang`\
+
+{{< pagebreak >}}
 
 # Beschermde soorten
 
-Er dient rekening te worden gehouden met de volgende soorten.
+Er dient voor dit project rekening te worden gehouden met de volgende soorten.
 
 ```{r}
+#| label: lijst-soorten
 #| output: asis
 glue("- {soorten_sel}") %>% 
   glue_collapse(sep = "\n")
 
 ```
-
+{{< pagebreak >}}
 
 
 # Maatregelen
@@ -107,4 +130,18 @@ Aanvullend gelden voor specifieke soorten de volgende maatregelen.
 soortspecifieke_maatregelen_sel
 ```
 
+{{< pagebreak >}}
+
+# Bijlage(n)
+
+## Beschermde soorten
+
+```{r}
+soorten %>% 
+  filter(soort %in% soorten_sel) %>% 
+  relocate(soortgroep, soort, beschermingscategorie) %>% 
+  arrange(soortgroep, soort) %>%
+  rename_all(str_to_sentence()) %>% 
+  knitr::kable()
+```
 

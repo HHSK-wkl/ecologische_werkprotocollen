@@ -117,6 +117,7 @@ soorten_sel <-
 algemene_maatregelen_sel <-
   algemene_maatregelen %>% 
   filter(werk_code %in% project_activiteiten) %>% 
+  filter_out(habitatbenadering == !project_habitatbenadering) %>% 
   mutate(maatregel_tekst_basis = glue("- {maatregel_omschrijving} ({maatregel_code})")) %>% 
   group_by(maatregel_type) %>% 
   summarise(maatregel_tekst = glue_collapse(maatregel_tekst_basis, sep = "\n")) %>% 
@@ -135,10 +136,11 @@ soortspecifieke_maatregelen_sel <-
          int_overlaps(periode_sel, periode)
          
          ) %>% 
+  filter_out(habitatbenadering == !project_habitatbenadering) %>% 
     arrange(periode_begin) %>% 
     mutate(maatregel_tekst_basis = glue("- {maatregel_omschrijving} ({maatregel_code})")) %>% 
     # select(-maatregel_omschrijving, -maatregel_code) %>%  # tijdelijk voor meer overzicht
-    group_by(periode_begin, periode_eind, periode, maatregel_type, maatregel_nr, maatregel_tekst_basis) %>% #View("basis")
+    group_by(periode_begin, periode_eind, periode, maatregel_type, maatregel_nr, maatregel_tekst_basis) %>% 
     summarise(soorten = glue_collapse(soort, sep = ", " )) %>% # gaat ervan uit dat een maatregel in een bepaalde periode voor een soort maar eenmaal wordt genoemd.
     group_by(soorten, periode_begin, periode_eind, periode, maatregel_type) %>% 
     summarise(maatregel_tekst = glue_collapse(maatregel_tekst_basis, sep = "\n")) %>% 
