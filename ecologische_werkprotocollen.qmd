@@ -32,6 +32,12 @@ project_activiteiten <-      params$project_activiteiten
 project_habitatbenadering <- params$project_habitatbenadering
 uitvoering_start <-          params$uitvoering_start
 uitvoering_eind <-           params$uitvoering_eind
+
+# Bij deze werkzaamheden wordt altijd habitatbenadering toegepast.
+# Wordt afgedwongen via invoer
+# if (project_activiteiten %in% c("1b", "1c", "2a", "2b", "2c", "3")) {
+#   project_habitatbenadering <- TRUE
+# }
 ```
 
 

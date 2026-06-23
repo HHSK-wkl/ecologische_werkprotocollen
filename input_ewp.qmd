@@ -67,6 +67,11 @@ subgebieden <-
   distinct() %>% 
   deframe()
 
+werk_altijd_habitat <- 
+  read_excel(bestand_up, sheet = "werkzaamheden") %>% 
+  filter(altijd_habitatbenadering) %>% 
+  pull(werk_code)
+
 werkzaamheden <- 
   read_excel(bestand_up, sheet = "werkzaamheden") %>% 
   select(werk_omschrijving, werk_code) %>% 
@@ -190,9 +195,17 @@ observe({
     distinct() %>%
     deframe()
   
-  shiny::updateCheckboxGroupInput(inputId = "project_subgebied", choices = choices_sel, selected = choices_sel)
+  updateCheckboxGroupInput(inputId = "project_subgebied", choices = choices_sel, selected = choices_sel)
   
+})
+
+observe({
+  input$project_habitatbenadering
+
+  if(input$project_activiteiten %in% werk_altijd_habitat){
   
+    updateCheckboxInput(inputId = "project_habitatbenadering", value = TRUE)
+  }
 })
 
 
