@@ -76,6 +76,16 @@ werkzaamheden <-
   read_excel(bestand_up, sheet = "werkzaamheden") %>% 
   select(werk_omschrijving, werk_code) %>% 
   deframe()
+
+wettelijke_belangen <-  c(
+  "Volksgezondheid", 
+  "Openbare veiligheid", 
+  "Bescherming flora en fauna" = "Bescherming van (wilde) flora en fauna (door bestendig beheer en onderhoud voort te zetten)",
+  "Ander belang" = "ander belang (i.e. voor recreatie, voor een verzorgd beeld, klachten van omwonenden)"
+  
+    
+)
+
 ```
 
 
@@ -106,11 +116,13 @@ checkboxGroupInput("project_subgebied", label = "Subgebieden", width = "90%")
 #| title: "Projectinformatie"
 textInput(inputId = "project_naam", label = "Projectnaam", width = "90%")
 
-textInput(inputId = "project_opdrachtgever", label = "Opdrachtgever", value = "HHSK", width = "90%")
+textInput(inputId = "project_opdrachtgever", label = "Opdrachtgever", value = "HHSK", width = "90%", placeholder = "HHSK")
 
 textInput(inputId = "project_opdrachtnemer", label = "Opdrachtnemer", width = "90%")
 
-selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = c("Keuze 1", "Keuze 2", "Anders"), width = "90%")
+textInput(inputId = "project_auteur", label = "Auteur uitvoeringsprotocol", width = "90%")
+
+selectInput(inputId = "project_wettelijk_belang", label = "Wettelijk belang", choices = wettelijke_belangen, width = "90%")
 
 strong("Wordt habitatbenadering toegepast?*")
 
@@ -217,6 +229,7 @@ output$uitvoeringsprotocol <- downloadHandler(
                           execute_params = list(project_naam             = input$project_naam,
                                                 project_opdrachtgever    = input$project_opdrachtgever,
                                                 project_opdrachtnemer    = input$project_opdrachtnemer,
+                                                project_auteur           = input$project_auteur,
                                                 project_wettelijk_belang = input$project_wettelijk_belang,
                                                 project_activiteiten     = input$project_activiteiten,
                                                 project_gebied           = input$project_gebied,

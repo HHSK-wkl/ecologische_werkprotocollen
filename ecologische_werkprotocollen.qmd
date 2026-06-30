@@ -11,6 +11,7 @@ params:
   project_naam: "Onderhoud polders HHSK"
   project_opdrachtgever: "HHSK"
   project_opdrachtnemer: "Aannemer ABC"
+  project_auteur: "Deskundige X"
   project_wettelijk_belang: "Wettelijk belang van dit project"
   project_gebied: ["SN"]
   project_subgebied: ["GZ", "EP"]
@@ -51,11 +52,11 @@ uitvoering_eind <-           params$uitvoering_eind
 
 # Over dit uitvoeringsprotocol
 
-Toelichting voor het opstellen en gebruiken van dit format
+## Toelichting voor het opstellen en gebruiken van dit format
 
 Dit uitvoeringsprotocol (UP) beschrijft hoe werkzaamheden in het beheergebied van het hoogheemraadschap van Schieland en de Krimpenerwaard (HHSK) worden voorbereid en/of uitgevoerd met inachtneming van de geldende gedragscode voor de waterschappen. Dit uitvoeringsprotocol is gebaseerd op [Ecologisch Werkprotocollen](https://www.schielandendekrimpenerwaard.nl/wat-doen-we/natuurbescherming/ecologische-werkprotocollen/) (EWP) van HHSK.
 
-In het EWP staan algemene maatregelen voor bestendig beheer en onderhoud en een overzicht van mogelijk aanwezige beschermde soorten. In de praktijk vinden werkzaamheden plaats op een specifieke locatie, in een bepaalde periode en met een beperkt aantal activiteiten. Dit uitvoeringsprotocol vertaalt het EWP naar die concrete werksituatie.
+In het Ecologisch Werkprotocol staan algemene maatregelen voor bestendig beheer en onderhoud en een overzicht van mogelijk aanwezige beschermde soorten. In de praktijk vinden werkzaamheden plaats op een specifieke locatie, in een bepaalde periode en met een beperkt aantal activiteiten. Dit uitvoeringsprotocol vertaalt het Ecologisch Werkprotocol naar die concrete werksituatie.
 
 **Het uitvoeringsprotocol is een locatie-, tijd- en werk-specifieke samenvatting van het EWP en geeft aan:**
 
@@ -95,6 +96,20 @@ In dat geval stel je een nieuw uitvoeringsprotocol op.
 
 # Project
 
+## Projectinformatie
+
+Opdrachtgever: `r params$project_opdrachtgever`
+
+Opdrachtnemer: `r params$project_opdrachtnemer`
+
+Auteur: `r params$project_auteur`
+
+Datum document: `r Sys.Date()`
+
+Contract: ???\
+
+Wettelijk belang: `r params$project_wettelijk_belang`
+
 ## Werkzaamheden
 
 `r activiteit_sel`
@@ -127,12 +142,7 @@ if (project_habitatbenadering){
 
 `r habitatbenadering_tekst`
 
-## Overige projectinformatie
 
-Opdrachtgever: `r params$project_opdrachtgever`\
-Opdrachtnemer: `r params$project_opdrachtnemer`\
-Contract: ???\
-Wettelijk belang: `r params$project_wettelijk_belang`\
 
 {{< pagebreak >}}
 
@@ -171,6 +181,10 @@ Aanvullend gelden voor specifieke soorten de volgende maatregelen.
 #| output: asis
 soortspecifieke_maatregelen_sel
 ```
+
+{{< pagebreak >}}
+
+# Contact
 
 {{< pagebreak >}}
 
