@@ -40,12 +40,10 @@ uitvoering_eind <-           params$uitvoering_eind
 # }
 ```
 
-
 ```{r}
 #| include: false
 #| file: R/info_uitvoeringsprotocol.R
 ```
-
 
 `r params$project_naam`
 
@@ -53,7 +51,45 @@ uitvoering_eind <-           params$uitvoering_eind
 
 # Over dit uitvoeringsprotocol
 
-Toelichting wat dit document is
+Toelichting voor het opstellen en gebruiken van dit format
+
+Dit uitvoeringsprotocol (UP) beschrijft hoe werkzaamheden in het beheergebied van het hoogheemraadschap van Schieland en de Krimpenerwaard (HHSK) worden voorbereid en/of uitgevoerd met inachtneming van de geldende gedragscode voor de waterschappen. Dit uitvoeringsprotocol is gebaseerd op [Ecologisch Werkprotocollen](https://www.schielandendekrimpenerwaard.nl/wat-doen-we/natuurbescherming/ecologische-werkprotocollen/) (EWP) van HHSK.
+
+In het EWP staan algemene maatregelen voor bestendig beheer en onderhoud en een overzicht van mogelijk aanwezige beschermde soorten. In de praktijk vinden werkzaamheden plaats op een specifieke locatie, in een bepaalde periode en met een beperkt aantal activiteiten. Dit uitvoeringsprotocol vertaalt het EWP naar die concrete werksituatie.
+
+**Het uitvoeringsprotocol is een locatie-, tijd- en werk-specifieke samenvatting van het EWP en geeft aan:**
+
+-   welke werkzaamheden worden uitgevoerd,
+-   welke beschermde soorten aanwezig (kunnen) zijn,
+-   welke maatregelen nodig zijn om negatieve effecten te voorkomen.
+
+## Uitvoeringsprotocol voor voorbereiding en uitvoering
+
+Het uitvoeringsprotocol wordt gebruikt bij de werkvoorbereiding en tijdens de uitvoering van de werkzaamheden. Het uitvoeringsprotocol wordt opgesteld door een ter zake deskundige ecoloog. Wanneer wordt afgeweken van de maatregelen uit het EWP, wordt dit in het uitvoeringsprotocol gemotiveerd en onderbouwd door een ecoloog.\
+\
+Dit uitvoeringsprotocol kan gefaseerd worden opgesteld. In de [voorbereidingsfase]{.underline} beschrijft het uitvoeringsprotocol de voorbereidende maatregelen, zoals een ecologisch veldbezoek als dat noodzakelijk is. In sommige gebieden of periodes is deze fase niet nodig.
+
+Voor de [uitvoering]{.underline} wordt een apart uitvoeringsprotocol opgesteld. Hierin worden de resultaten van de voorbereiding verwerkt en staan de maatregelen die tijdens het werk moeten worden toegepast.
+
+Het bijhouden van een ecologisch logboek is een maatregel die is vastgelegd in het uitvoeringsprotocol. Het logboek zelf maakt geen onderdeel uit van dit document, omdat dit gedurende de uitvoering van de werkzaamheden wordt bijgehouden.
+
+## FAQ
+
+**Is een uitvoeringsprotocol verplicht?**
+
+Ja, het opstellen van een uitvoeringsprotocol is verplicht als je wilt werken conform de gedragscode
+
+**Wie stelt het uitvoeringsprotocol op?**
+
+De werkvoorbereider. In het geval van een bestek is dat de werkvoorbereider van de aannemer.
+
+**Mag één uitvoeringsprotocol meerdere werkzaamheden omvatten?**
+
+Ja, daar is de opsteller vrij in. Advies is wel om een realistische periode te kiezen. Bedenk wel dat te veel soorten werk en/of een te ruime periode kunnen leiden tot meer beschermde soorten in hun kwetsbare periode waardoor je extra maatregelen moet nemen.
+
+**Wat als de planning verandert?**
+
+In dat geval stel je een nieuw uitvoeringsprotocol op.
 
 {{< pagebreak >}}
 
@@ -114,7 +150,6 @@ glue("- {soorten_sel}") %>%
 
 {{< pagebreak >}}
 
-
 # Maatregelen
 
 Voor deze werkzaamheden moeten algemene maatregelen worden genomen ter bescherming van alle aanwezige soorten. Daarnaast zijn er voor specifieke beschermde soorten extra maatregelen die noodzakelijk zijn om deze soorten te beschermen.
@@ -151,4 +186,3 @@ soorten %>%
   rename_all(str_to_sentence) %>% 
   knitr::kable()
 ```
-
